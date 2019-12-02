@@ -45,4 +45,54 @@ public class MybatisBaseApplicationTests {
         }
     }
 
+    @Test
+    public void testAddUser(){
+        SqlSession sqlSession =null;
+        try {
+            sqlSession = sqlSessionFactory.openSession();
+            User user = new User("小小", "111", "1@com", "123", "sasas");
+            int count =sqlSession.insert("test.addUser", user);
+            System.out.println(count);
+            sqlSession.commit();
+            System.out.println(user.getId());
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (sqlSession!=null)
+                sqlSession.close();
+        }
+
+    }
+    @Test
+    public void testDeleteUser(){
+        SqlSession sqlSession =null;
+        try {
+            sqlSession = sqlSessionFactory.openSession();
+            int count =sqlSession.delete("test.deleteUserById", 13);
+            System.out.println(count);
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (sqlSession!=null)
+                sqlSession.close();
+        }
+    }
+    @Test
+    public void testUpdateUser(){
+        SqlSession sqlSession =null;
+        try {
+            sqlSession = sqlSessionFactory.openSession();
+            User u =new User("修改","1234","test@","121212","");
+            u.setId(1);
+            int count =sqlSession.update("test.updateUser", u);
+            System.out.println(count);
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (sqlSession!=null)
+                sqlSession.close();
+        }
+    }
 }

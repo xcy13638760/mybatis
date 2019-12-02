@@ -7,4 +7,22 @@
             resultType="com.study.mybatis.mybatisbase.User">
         SELECT * from user WHERE id=#{id}
     </select>
+    <insert id="addUser" parameterType="com.study.mybatis.mybatisbase.User">
+        <!-- selectKey将主键返回，需要再返回 -->
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+<!--        <selectKey keyProperty="id" order="BEFORE" resultType="String">-->
+<!--            select uuid()-->
+<!--        </selectKey>-->
+        INSERT INTO user(username,password,email,phone,address)
+        VALUES (#{username},#{password},#{email},#{phone},#{address})
+    </insert>
+    <delete id="deleteUserById" parameterType="int">
+        DELETE FROM user WHERE id =#{id}
+    </delete>
+    <update id="updateUser" parameterType="com.study.mybatis.mybatisbase.User">
+        UPDATE user set username=#{username},email=#{email},phone=#{phone},address =#{address}
+        WHERE id =#{id}
+    </update>
 </mapper>
