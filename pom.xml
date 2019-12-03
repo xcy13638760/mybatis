@@ -10,7 +10,6 @@
 
     <modules>
         <module>mybatis-base</module>
-        <module>mybatis-spring</module>
     </modules>
     
 </project>
