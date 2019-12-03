@@ -2,6 +2,7 @@ package com.study.mybatis.mybatisbase;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.apache.ibatis.type.Alias;
 
 @Data
 @AllArgsConstructor

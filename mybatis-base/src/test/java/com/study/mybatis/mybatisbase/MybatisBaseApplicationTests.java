@@ -1,5 +1,6 @@
 package com.study.mybatis.mybatisbase;
 
+import lombok.extern.log4j.Log4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,6 +16,7 @@ import java.io.InputStream;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Log4j
 public class MybatisBaseApplicationTests {
 
     private SqlSessionFactory sqlSessionFactory;
@@ -25,6 +27,7 @@ public class MybatisBaseApplicationTests {
         InputStream in = Resources.getResourceAsStream(resource);
         //创建sqlSessionFactory
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+        log.info("sesseionFactory初始化完成");
     }
 
     @Test
@@ -37,6 +40,9 @@ public class MybatisBaseApplicationTests {
             User user = sqlSession.selectOne("test.findUserById",1);
             // 输出
             System.out.println(user);
+            sqlSession.clearCache();
+            User user2=sqlSession.selectOne("test.findUserById",1);
+            System.out.println(user2);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
