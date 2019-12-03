@@ -1,13 +1,13 @@
-package com.study.mybatis.mybatisspring;
+package com.study.mybatis.mybatisspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MybatisSpringApplication {
+public class MybatisSpringbootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MybatisSpringApplication.class, args);
+        SpringApplication.run(MybatisSpringbootApplication.class, args);
     }
 
 }
