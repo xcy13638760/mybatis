@@ -2,12 +2,13 @@ package com.study.mybatis.mybatisbase;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.apache.ibatis.type.Alias;
+
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
-public class User {
-
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
     int id;
     String username;
     String password;
